@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Shortlisted Resumes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Shortlisted Resumes</h3>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Resume</th>
+                <th>Score (%)</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in resumes %}
+            <tr>
+                <td>{{ r.filename }}</td>
+                <td>{{ r.score }}</td>
+                <td>{{ r.skills }}</td>
+                <td>
+                    <a href="/download/{{ r.id }}" class="btn btn-sm btn-success">Download</a>
+                    <a href="/delete/{{ r.id }}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Delete this resume?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/dashboard" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}

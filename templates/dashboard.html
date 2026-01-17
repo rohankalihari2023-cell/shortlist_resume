@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div class="col-md-2 bg-dark text-white sidebar p-3">
+            <h5 class="text-center">Resume AI</h5>
+            <hr>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white active" href="/dashboard">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/shortlisted">
+                        Shortlisted Resumes
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a class="nav-link text-danger" href="/logout">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 p-4">
+            <h3 class="mb-3">Resume Shortlisting Dashboard</h3>
+
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                Paste the job description and upload multiple resumes (PDF / DOCX).
+                The system will analyze skills and rank candidates automatically.
+            </div>
+
+            <!-- Resume Upload Card -->
+            <div class="card shadow">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+
+                        <!-- Job Description -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                Job Description
+                            </label>
+                            <textarea
+                                name="job_description"
+                                class="form-control"
+                                rows="6"
+                                placeholder="Paste complete job description here..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <!-- Resume Upload -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                Upload Resumes (PDF / DOCX)
+                            </label>
+                            <input
+                                type="file"
+                                name="resumes"
+                                class="form-control"
+                                multiple
+                                accept=".pdf,.docx"
+                                required
+                            >
+                            <small class="text-muted">
+                                You can upload multiple resumes at once.
+                            </small>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-primary">
+                            Analyze & Shortlist
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

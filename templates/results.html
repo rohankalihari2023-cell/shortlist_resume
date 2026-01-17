@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Shortlisted Candidates</h3>
+
+    <table class="table table-striped table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Resume</th>
+                <th>Match Score (%)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in results %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td class="
+                    {% if r.score >= 75 %}score-high
+                    {% elif r.score >= 50 %}score-mid
+                    {% else %}score-low{% endif %}
+                ">
+                    {{ r.score }}
+                </td>
+                <td>
+                    {% if r.score >= 75 %}
+                        <span class="badge bg-success">Shortlisted</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Rejected</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/dashboard" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}
